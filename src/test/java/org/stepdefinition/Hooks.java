@@ -2,11 +2,14 @@ package org.stepdefinition;
 
 import org.baseclass.BaseClass;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
+
+
+
 
 public class Hooks extends BaseClass {
-	@Before
+	@Before(order=1)
 	public void bfClass()
 	{
 		System.out.println("scenerio started");
@@ -14,7 +17,22 @@ public class Hooks extends BaseClass {
 		toLaunchUrl("https://www.facebook.com/");
 		maxWindow();
 	}
-	@After
+	@Before(order=2)
+	public void before1()
+	{
+		System.out.println("Scenerio1");
+	}
+	@Before(order=3)
+	public void bef3()
+	{
+		System.out.println("scenerio 2");
+	}
+	@After(order=3)
+	public void af2()
+	{
+		System.out.println("scenerio completion");
+	}
+	@After(order=2)
 	public void afClass()
 	{
 		closeBrowser();
